@@ -1,0 +1,110 @@
+8.Logaritmikus keresés tétele:
+
+Kiinduló állapot: adatokkal feltöltött sorbarendezett N elemû tömb
+
+Feladat: Keressük meg benne az X értékû elemet és ha megtaláltuk, irassuk ki a sorszámát
+
+1 4 8 12 13 14 20 25
+       ^
+       |
+       |	
+
+Megoldás menete: 
+	Készítünk egy változót, ami azt fogja megmondani, hogy az a tartomány amiben vizsgálunk, az melyik tömbelemben kezdõdik
+		
+		A = 1
+		F = N
+	(Változó)VAN = false
+		
+    ------------K = (A+F)/2
+    |		HA ADAT [K]=X AKKOR VAN = true
+    |   	KÜLÖNBEN HA ADAT [K]<X	AKKOR A=K+1
+    |    	KÜLÖNBEN F=K-1
+    |
+    ------------AMÍG (VAN = False & A<=F)
+		HA VAN = TRUE KI(K)
+		KÜLÖNBEN 	KI("nincs")
+
+using System;
+
+
+class Program
+{
+    static void Main()
+    {
+        int[] szamok = { 10, 20, 30, 40, 50, 60, 70 };
+        int x = 20;
+        int a = 0;
+        int f = szamok.Length;
+        int k;
+        bool van = false;
+        do
+        {
+            k = (a + f) / 2;
+            if (szamok[k] == x) van = true;
+            else if (szamok[k] < x) a = k + 1;
+            else f = k - 1;
+        } while (van != true && a<f);
+        if (van == true) Console.WriteLine(k+1);
+        else Console.WriteLine("Nincs ilyen elem.");
+
+
+        Console.ReadKey();
+    }
+}
+
+
+
+
+
+
+9. Kiválogatás tétele:
+
+Kiinduló állapot: N elemû adatokkal feltöltött adatnevû tömb + egy üres új nevû tömb
+
+Feladat: Válogassa ki az adat nevû tömb elemei közül T tulajdonságúakat és ezeket helyezze az új tömbbe
+
+Megoldás menete:
+
+|1|3|8|12|13|14|20|25|
+
+|4|8| | | | | | | | |
+ ^
+ |
+ujindex
+----> ha van olyan, akkor tovább megy az index
+
+UJINDEX = 1 
+CIKLUS I=1-tõl N-ig
+	HA ADAT[I] = T tul.
+		AKKOR
+		UJ[UJINDEX]=ADAT[I]
+		UJINDEX=UJINDEX+1
+CIKLUS VÉGE
+ 
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] szamok = { 10, 15, 17, 20, 30, 40, 50, 60, 70 };
+        int[] lk = new int[szamok.Length];
+
+        int ujindex = 0;
+        for (int i = 0; i < szamok.Length; i++)
+        {
+            if (szamok[i]%2==0)
+            {
+                lk[ujindex] = szamok[i];
+                ujindex++;
+            }
+        }
+
+
+        Console.ReadKey();
+    }
+}
+
+Console.ReadKey(); Sorába oldalt a szürkébe katt 
